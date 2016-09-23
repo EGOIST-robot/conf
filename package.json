@@ -36,6 +36,7 @@
   "dependencies": {
     "dot-prop": "^3.0.0",
     "env-paths": "^0.3.0",
+    "lodash.merge": "^4.6.0",
     "mkdirp": "^0.5.1",
     "pkg-up": "^1.0.0"
   },

@@ -5,6 +5,7 @@ const dotProp = require('dot-prop');
 const mkdirp = require('mkdirp');
 const pkgUp = require('pkg-up');
 const envPaths = require('env-paths');
+const merge = require('lodash.merge');
 
 const obj = () => Object.create(null);
 
@@ -34,7 +35,7 @@ class Conf {
 		}
 
 		this.path = path.resolve(opts.cwd, `${opts.configName}.json`);
-		this.store = Object.assign(obj(), opts.defaults, this.store);
+		this.store = merge(obj(), opts.defaults, this.store);
 	}
 	get(key) {
 		return dotProp.get(this.store, key);
@@ -93,7 +94,6 @@ class Conf {
 
 		fs.writeFileSync(this.path, JSON.stringify(val, null, '\t'));
 	}
-	// TODO: use `Object.entries()` here at some point
 	* [Symbol.iterator]() {
 		const store = this.store;
 
